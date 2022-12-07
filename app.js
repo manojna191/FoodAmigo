@@ -8,7 +8,13 @@ dotenv.config()
 const app = express()
 
 
-mongoose.connect("mongodb://localhost:27017/FoodAmigoDB", {useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/FoodAmigoDB", {useNewUrlParser: true});
+mongoose
+  .connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+
 
 app.use((err,req,res,next)=>{
     const status = err.status || 500
